@@ -1,0 +1,81 @@
+<h4 class="card-heading">Section : MCQ's</h4>
+<h4 class="timer">Timer : {{ minutes }} : {{ seconds }}</h4>
+<div class="card" *ngIf="isMCQ">
+  <form (ngSubmit)="onChange()" [formGroup]="questionsForm">
+    <div class="div-cls" >
+      <div class="div-que" >
+        <h4 class="card-title">Question : {{ questionsNo }}</h4>
+        <p>
+          {{questions[count].Questions }}
+        </p>
+      </div>
+      <div class="div-opt">
+        <h4 class="card-title">Options</h4>
+        <p>
+          <input
+            type="radio"
+            value="A"
+            formControlName="option"
+          />
+          {{ questions[count].OptionA }}<br /> 
+          <input
+            type="radio"
+            value="B"
+            formControlName="option"
+          />
+          {{ questions[count].OptionB }}
+          <br />
+          <input
+            type="radio"
+            value="C"
+            formControlName="option"
+          />
+          {{ questions[count].OptionC }}<br />
+          <input
+            type="radio"
+            value="D"
+            formControlName="option"
+          />
+          {{ questions[count].OptionD }}<br />
+        </p>
+          <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!questionsForm.valid"
+        >
+         Next 
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="card" *ngIf="!isMCQ">
+  <form (ngSubmit)="onChange()" [formGroup]="descriptiveQuestionsForm">
+    <div class="div-cls">
+      <div class="div-que-sencond">
+        <h4 class="title">Question : {{ questionsNo }}</h4>
+        <p>
+          {{questions[count].Questions }}
+        </p>
+      </div>
+      <div class="div-opt-second">
+        <h4 class="card-title">Answer</h4>
+        <textarea
+          formControlName="answer"
+          class="form-control"
+          id="textareaInputField"
+          style="width: 95%"
+          rows="15"
+        >
+        </textarea>
+        <button
+          type="submit"
+          class="btn desc-que-btn"
+          [disabled]="!descriptiveQuestionsForm.valid"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
